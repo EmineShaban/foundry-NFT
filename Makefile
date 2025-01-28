@@ -33,7 +33,7 @@ format :; forge fmt
 
 anvil :; anvil -m 'test test test test test test test test test test test junk' --steps-tracing --block-time 1
 
-NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
+NETWORK_ARGS := --rpc-url http://127.0.0.1:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
 
 ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --verify  -vvvv
@@ -45,8 +45,8 @@ deploy:
 mint:
 	@forge script script/Interactions.s.sol:MintBasicNFT $(NETWORK_ARGS)
 
-# deployMood:
-# 	@forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
+deployMood:
+	@forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
 
 # mintMoodNft:
 # 	@forge script script/Interactions.s.sol:MintMoodNft $(NETWORK_ARGS)
